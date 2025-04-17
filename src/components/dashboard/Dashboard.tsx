@@ -1,12 +1,15 @@
 
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import DashboardHeader from "./DashboardHeader";
 import SolanaWallet from "../solana/SolanaWallet";
 import CollateralLock from "../collateral/CollateralLock";
 import DockerRental from "../vmia/DockerRental";
 import MultiChainStats from "../blockchain/MultiChainStats";
+import TokenExchange from "../dex/TokenExchange";
 import { useBlockchain } from "@/contexts/BlockchainContext";
 
 const Dashboard = () => {
@@ -15,7 +18,8 @@ const Dashboard = () => {
     walletAddress, 
     connectWallet,
     disconnectWallet,
-    cecleBalance
+    cecleBalance,
+    marbleBalance
   } = useBlockchain();
   
   const [activeTab, setActiveTab] = useState("overview");
@@ -37,10 +41,11 @@ const Dashboard = () => {
           onValueChange={setActiveTab}
           className="space-y-6"
         >
-          <TabsList className="grid w-full grid-cols-4 bg-cosmic-slate/30">
+          <TabsList className="grid w-full grid-cols-5 bg-cosmic-slate/30">
             <TabsTrigger value="overview">Overview</TabsTrigger>
             <TabsTrigger value="collateral">Collateral</TabsTrigger>
             <TabsTrigger value="vmia">VMIA (PoH)</TabsTrigger>
+            <TabsTrigger value="dex">DEX</TabsTrigger>
             <TabsTrigger value="blockchain">Blockchains</TabsTrigger>
           </TabsList>
           
@@ -57,7 +62,16 @@ const Dashboard = () => {
             </div>
             <div className="grid gap-6 md:grid-cols-2">
               <DockerRental />
-              <MultiChainStats />
+              <div className="space-y-4">
+                <MultiChainStats />
+                <div className="flex justify-center pt-4">
+                  <Link to="/dex">
+                    <Button className="bg-gradient-to-r from-cosmic-blue to-cosmic-cyan hover:from-cosmic-blue/80 hover:to-cosmic-cyan/80">
+                      <span className="mr-2">🔄</span> Open DEX
+                    </Button>
+                  </Link>
+                </div>
+              </div>
             </div>
           </TabsContent>
           
@@ -73,19 +87,60 @@ const Dashboard = () => {
               />
             </div>
             <div className="rounded-lg border border-cosmic-purple/20 bg-cosmic-black/30 p-6">
-              <h2 className="mb-4 text-xl font-semibold text-zinc-50">Collateral Benefits</h2>
-              <div className="grid gap-6 md:grid-cols-3">
-                <div className="space-y-2">
-                  <h3 className="font-medium text-cosmic-cyan">Enhanced Yield</h3>
-                  <p className="text-sm text-zinc-400">Lock CECLE tokens to earn additional CMX rewards</p>
+              <h2 className="mb-4 text-xl font-semibold text-zinc-50">Token Collateral System</h2>
+              <div className="grid gap-6 md:grid-cols-2">
+                <div className="space-y-4">
+                  <div className="rounded-lg bg-cosmic-slate/20 p-4">
+                    <div className="mb-2 flex items-center">
+                      <Badge className="mr-2 bg-blockchain-solana/20 text-blockchain-solana border-blockchain-solana/30">Solana</Badge>
+                      <h3 className="font-medium text-zinc-50">CECLE Token</h3>
+                    </div>
+                    <p className="text-sm text-zinc-400 mb-2">
+                      Lock CECLE tokens from Solana (5vmiteBPb7SYj4s1HmNFbb3kWSuaUu4waENx4vSQDmbs) to earn 5% CMX rewards.
+                    </p>
+                    <div className="grid grid-cols-2 gap-2 text-xs">
+                      <div className="text-zinc-400">Token Address:</div>
+                      <div className="overflow-hidden text-ellipsis font-mono text-zinc-300">5vmiteBPb7SYj4s1HmNFbb3kWSuaUu4waENx4vSQDmbs</div>
+                      <div className="text-zinc-400">Reward Rate:</div>
+                      <div className="text-cosmic-cyan">5% in CMX</div>
+                    </div>
+                  </div>
                 </div>
-                <div className="space-y-2">
-                  <h3 className="font-medium text-cosmic-cyan">Governance Rights</h3>
-                  <p className="text-sm text-zinc-400">Participate in ecosystem decisions</p>
+                
+                <div className="space-y-4">
+                  <div className="rounded-lg bg-cosmic-slate/20 p-4">
+                    <div className="mb-2 flex items-center">
+                      <Badge className="mr-2 bg-blockchain-solana/20 text-blockchain-solana border-blockchain-solana/30">Solana</Badge>
+                      <h3 className="font-medium text-zinc-50">MARBLE Token</h3>
+                    </div>
+                    <p className="text-sm text-zinc-400 mb-2">
+                      Lock MARBLE tokens from Solana (B9NYKkHRa1VfgWeKXTiGLaBz7V1URQSGnaEPb4gGFsXA) to earn 8% CMX rewards.
+                    </p>
+                    <div className="grid grid-cols-2 gap-2 text-xs">
+                      <div className="text-zinc-400">Token Address:</div>
+                      <div className="overflow-hidden text-ellipsis font-mono text-zinc-300">B9NYKkHRa1VfgWeKXTiGLaBz7V1URQSGnaEPb4gGFsXA</div>
+                      <div className="text-zinc-400">Reward Rate:</div>
+                      <div className="text-cosmic-fuchsia">8% in CMX</div>
+                    </div>
+                  </div>
                 </div>
-                <div className="space-y-2">
-                  <h3 className="font-medium text-cosmic-cyan">Priority Access</h3>
-                  <p className="text-sm text-zinc-400">Get first access to new features and services</p>
+              </div>
+              
+              <div className="mt-6 space-y-2">
+                <h3 className="font-medium text-cosmic-cyan">Collateral Benefits</h3>
+                <div className="grid gap-6 md:grid-cols-3">
+                  <div className="space-y-2">
+                    <h4 className="font-medium text-zinc-300">Enhanced Yield</h4>
+                    <p className="text-sm text-zinc-400">Lock tokens to earn additional CMX rewards</p>
+                  </div>
+                  <div className="space-y-2">
+                    <h4 className="font-medium text-zinc-300">Governance Rights</h4>
+                    <p className="text-sm text-zinc-400">Participate in ecosystem decisions</p>
+                  </div>
+                  <div className="space-y-2">
+                    <h4 className="font-medium text-zinc-300">Priority Access</h4>
+                    <p className="text-sm text-zinc-400">Get first access to new features and services</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -117,6 +172,31 @@ const Dashboard = () => {
             </div>
           </TabsContent>
           
+          <TabsContent value="dex" className="space-y-6">
+            <TokenExchange />
+            <div className="rounded-lg border border-cosmic-purple/20 bg-cosmic-black/30 p-6">
+              <h2 className="mb-4 text-xl font-semibold text-zinc-50">Cosmic DEX</h2>
+              <p className="mb-4 text-zinc-400">
+                The Cosmic DEX allows users to swap tokens across multiple chains, provide liquidity to earn fees,
+                and mint their own tokens using CMX.
+              </p>
+              <div className="grid gap-6 md:grid-cols-3">
+                <div className="space-y-2">
+                  <h3 className="font-medium text-cosmic-blue">Swap</h3>
+                  <p className="text-sm text-zinc-400">Trade tokens across multiple blockchains</p>
+                </div>
+                <div className="space-y-2">
+                  <h3 className="font-medium text-cosmic-blue">Provide Liquidity</h3>
+                  <p className="text-sm text-zinc-400">Earn fees by providing liquidity to token pairs</p>
+                </div>
+                <div className="space-y-2">
+                  <h3 className="font-medium text-cosmic-blue">Mint Tokens</h3>
+                  <p className="text-sm text-zinc-400">Create your own tokens on the Cosmic Marble Network</p>
+                </div>
+              </div>
+            </div>
+          </TabsContent>
+          
           <TabsContent value="blockchain" className="space-y-6">
             <MultiChainStats />
             <div className="grid gap-6 md:grid-cols-2">
@@ -134,19 +214,35 @@ const Dashboard = () => {
                 </div>
               </div>
               <div className="rounded-lg border border-cosmic-purple/20 bg-cosmic-black/30 p-6">
-                <h2 className="mb-4 text-xl font-semibold text-zinc-50">CECLE Token</h2>
-                <p className="text-zinc-400">
-                  CECLE is the native token on Solana with address: 5vmiteBPb7SYj4s1HmNFbb3kWSuaUu4waENx4vSQDmbs.
-                  It can be used as collateral within the ecosystem.
-                </p>
-                <div className="mt-6">
-                  <div className="grid grid-cols-2 gap-2 text-sm">
-                    <div className="text-zinc-400">Token Address:</div>
-                    <div className="overflow-hidden text-ellipsis font-mono text-zinc-300">5vmiteBPb7SYj4s1HmNFbb3kWSuaUu4waENx4vSQDmbs</div>
-                    <div className="text-zinc-400">Network:</div>
-                    <div className="text-zinc-300">Solana</div>
-                    <div className="text-zinc-400">Standard:</div>
-                    <div className="text-zinc-300">SPL Token</div>
+                <h2 className="mb-4 text-xl font-semibold text-zinc-50">Core Tokens</h2>
+                <div className="space-y-4">
+                  <div>
+                    <h3 className="font-medium text-zinc-50">CECLE Token (Solana)</h3>
+                    <p className="text-sm text-zinc-400 mb-2">
+                      CECLE is a Solana SPL token that can be used as collateral within the ecosystem.
+                    </p>
+                    <div className="grid grid-cols-2 gap-2 text-xs">
+                      <div className="text-zinc-400">Token Address:</div>
+                      <div className="overflow-hidden text-ellipsis font-mono text-zinc-300">5vmiteBPb7SYj4s1HmNFbb3kWSuaUu4waENx4vSQDmbs</div>
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <h3 className="font-medium text-zinc-50">MARBLE Token (Solana)</h3>
+                    <p className="text-sm text-zinc-400 mb-2">
+                      MARBLE is a Solana SPL token that acts as a 1:1 pegged token for the Cosmic Marble blockchain.
+                    </p>
+                    <div className="grid grid-cols-2 gap-2 text-xs">
+                      <div className="text-zinc-400">Token Address:</div>
+                      <div className="overflow-hidden text-ellipsis font-mono text-zinc-300">B9NYKkHRa1VfgWeKXTiGLaBz7V1URQSGnaEPb4gGFsXA</div>
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <h3 className="font-medium text-zinc-50">CMX Token (Cosmic)</h3>
+                    <p className="text-sm text-zinc-400 mb-2">
+                      CMX is the native token of the Cosmic Marble blockchain used for gas fees, governance, and token minting.
+                    </p>
                   </div>
                 </div>
               </div>

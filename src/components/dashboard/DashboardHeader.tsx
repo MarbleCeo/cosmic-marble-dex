@@ -10,7 +10,8 @@ const DashboardHeader = () => {
     connectWallet, 
     disconnectWallet,
     cmxBalance,
-    cecleBalance
+    cecleBalance,
+    marbleBalance
   } = useBlockchain();
 
   return (
@@ -34,6 +35,9 @@ const DashboardHeader = () => {
                 </Badge>
                 <Badge className="bg-blockchain-solana/20 text-blockchain-solana border-blockchain-solana/30">
                   {cecleBalance.toFixed(2)} CECLE
+                </Badge>
+                <Badge className="bg-cosmic-blue/20 text-cosmic-blue border-cosmic-blue/30">
+                  {marbleBalance.toFixed(2)} MARBLE
                 </Badge>
               </div>
               <div className="flex items-center text-xs text-zinc-400">
