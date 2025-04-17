@@ -1,6 +1,6 @@
-
 // Utility functions for blockchain operations
 // In a production app, these would interact with actual blockchain APIs
+import { TokenPair, Token, MintDetails, CrossChainBridge } from "@/lib/types";
 
 // Constants
 export const CECLE_TOKEN_ADDRESS = "5vmiteBPb7SYj4s1HmNFbb3kWSuaUu4waENx4vSQDmbs";
