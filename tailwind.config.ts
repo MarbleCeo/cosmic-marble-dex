@@ -61,6 +61,22 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				cosmic: {
+					'blue': '#1E40AF',
+					'purple': '#5B21B6',
+					'cyan': '#06B6D4',
+					'indigo': '#4338CA',
+					'violet': '#7C3AED',
+					'fuchsia': '#C026D3',
+					'black': '#0F172A',
+					'slate': '#1E293B'
+				},
+				blockchain: {
+					'solana': '#9945FF',
+					'ethereum': '#627EEA',
+					'binance': '#F0B90B',
+					'bitcoin': '#F7931A'
 				}
 			},
 			borderRadius: {

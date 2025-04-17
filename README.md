@@ -1,4 +1,13 @@
-# Welcome to your Lovable project
+# # Cosmic Marble Nexus
+
+A professional blockchain platform that integrates with Solana, Ethereum, Binance, and Bitcoin.
+
+## Features
+
+- **CECLE Token Collateral**: Lock CECLE tokens from Solana (address: 5vmiteBPb7SYj4s1HmNFbb3kWSuaUu4waENx4vSQDmbs) as collateral
+- **VMIA (Proof of Host)**: Rent Docker machines and earn CMX tokens
+- **Multi-Chain Dashboard**: Monitor key metrics across multiple blockchains
+- **Cosmic UI**: Beautiful space-themed user interface
 
 ## Project info
 
