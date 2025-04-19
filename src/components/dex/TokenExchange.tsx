@@ -1,4 +1,5 @@
 
+import * as React from "react";
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -28,19 +29,16 @@ const TokenExchange = () => {
   const [toAmount, setToAmount] = useState('');
   const [isSwapping, setIsSwapping] = useState(false);
 
-  // Select first pair by default
   useEffect(() => {
     if (tokenPairs.length && !selectedPair) setSelectedPair(tokenPairs[0]);
   }, [tokenPairs, selectedPair]);
 
-  // Calculate toAmount based on fromAmount and swap direction
   useEffect(() => {
     if (!selectedPair || !fromAmount) {
       setToAmount('');
       return;
     }
 
-    // Get price ratio to calculate estimate
     const rate = swapDirection === 'base_to_quote'
       ? selectedPair.baseToken.price / selectedPair.quoteToken.price
       : selectedPair.quoteToken.price / selectedPair.baseToken.price;
@@ -144,11 +142,11 @@ const TokenExchange = () => {
                     <div className="flex items-center justify-between text-xs text-zinc-400">
                       <span>Price:</span>
                       <span>
-                        1 {swapDirection === 'base_to_quote' ? selectedPair.baseToken.symbol : selectedPair.quoteToken.symbol} = {' '}
+                        1 {swapDirection === 'base_to_quote' ? selectedPair.baseToken.symbol : selectedPair.quoteToken.symbol} ={' '}
                         {swapDirection === 'base_to_quote' 
                           ? (selectedPair.baseToken.price / selectedPair.quoteToken.price).toFixed(6) 
                           : (selectedPair.quoteToken.price / selectedPair.baseToken.price).toFixed(6)
-                        } {' '}
+                        }{' '}
                         {swapDirection === 'base_to_quote' ? selectedPair.quoteToken.symbol : selectedPair.baseToken.symbol}
                       </span>
                     </div>
@@ -159,9 +157,8 @@ const TokenExchange = () => {
                       <div className="flex items-center justify-between">
                         <label className="text-xs text-zinc-400">From</label>
                         <span className="text-xs flex items-center text-zinc-400">
-                          <Badge className="mr-1" variant="outline">
-                            {swapDirection === 'base_to_quote' ? selectedPair.baseToken.chain : selectedPair.quoteToken.chain}
-                          </Badge>
+                          <Badge variant="outline" className="mr-1" />
+                          <span>{swapDirection === 'base_to_quote' ? selectedPair.baseToken.chain : selectedPair.quoteToken.chain}</span>
                           {swapDirection === 'base_to_quote' ? selectedPair.baseToken.symbol : selectedPair.quoteToken.symbol}
                         </span>
                       </div>
@@ -189,9 +186,8 @@ const TokenExchange = () => {
                       <div className="flex items-center justify-between">
                         <label className="text-xs text-zinc-400">To</label>
                         <span className="text-xs flex items-center text-zinc-400">
-                          <Badge className="mr-1" variant="outline">
-                            {swapDirection === 'base_to_quote' ? selectedPair.quoteToken.chain : selectedPair.baseToken.chain}
-                          </Badge>
+                          <Badge variant="outline" className="mr-1" />
+                          <span>{swapDirection === 'base_to_quote' ? selectedPair.quoteToken.chain : selectedPair.baseToken.chain}</span>
                           {swapDirection === 'base_to_quote' ? selectedPair.quoteToken.symbol : selectedPair.baseToken.symbol}
                         </span>
                       </div>

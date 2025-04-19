@@ -1,4 +1,5 @@
 
+import * as React from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useBlockchain } from "@/contexts/BlockchainContext";
@@ -30,14 +31,14 @@ const DashboardHeader = () => {
           <>
             <div className="hidden flex-col items-end space-y-1 md:flex">
               <div className="flex items-center space-x-2">
-                <Badge className="bg-cosmic-fuchsia/20 text-cosmic-fuchsia border-cosmic-fuchsia/30">
-                  {cmxBalance.toFixed(2)} CMX
+                <Badge variant="default" className="bg-cosmic-fuchsia/20 text-cosmic-fuchsia border-cosmic-fuchsia/30">
+                  <span>{cmxBalance.toFixed(2)} CMX</span>
                 </Badge>
-                <Badge className="bg-blockchain-solana/20 text-blockchain-solana border-blockchain-solana/30">
-                  {cecleBalance.toFixed(2)} CECLE
+                <Badge variant="default" className="bg-blockchain-solana/20 text-blockchain-solana border-blockchain-solana/30">
+                  <span>{cecleBalance.toFixed(2)} CECLE</span>
                 </Badge>
-                <Badge className="bg-cosmic-blue/20 text-cosmic-blue border-cosmic-blue/30">
-                  {marbleBalance.toFixed(2)} MARBLE
+                <Badge variant="default" className="bg-cosmic-blue/20 text-cosmic-blue border-cosmic-blue/30">
+                  <span>{marbleBalance.toFixed(2)} MARBLE</span>
                 </Badge>
               </div>
               <div className="flex items-center text-xs text-zinc-400">
@@ -71,3 +72,4 @@ const DashboardHeader = () => {
 };
 
 export default DashboardHeader;
+

@@ -1,4 +1,5 @@
 
+import * as React from "react";
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -13,11 +14,9 @@ const SolanaWallet = ({ walletAddress, onConnect }: SolanaWalletProps) => {
   const [balance, setBalance] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  // Simulate fetching balance
   useEffect(() => {
     if (walletAddress) {
       setIsLoading(true);
-      // In a real app, this would be a call to Solana RPC
       setTimeout(() => {
         setBalance(Math.random() * 10);
         setIsLoading(false);
@@ -31,7 +30,7 @@ const SolanaWallet = ({ walletAddress, onConnect }: SolanaWalletProps) => {
         <CardTitle className="flex items-center justify-between">
           <span className="text-zinc-50">Solana Wallet</span>
           <Badge variant="outline" className="bg-blockchain-solana/10 text-blockchain-solana border-blockchain-solana/30">
-            Solana
+            <span>Solana</span>
           </Badge>
         </CardTitle>
         <CardDescription className="text-zinc-400">
@@ -75,3 +74,4 @@ const SolanaWallet = ({ walletAddress, onConnect }: SolanaWalletProps) => {
 };
 
 export default SolanaWallet;
+

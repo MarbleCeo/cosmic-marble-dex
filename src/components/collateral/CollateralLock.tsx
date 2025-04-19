@@ -1,4 +1,5 @@
 
+import * as React from "react";
 import { useState } from "react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -116,8 +117,8 @@ const CollateralLock = ({ isWalletConnected }: CollateralLockProps) => {
       <CardHeader className="pb-2">
         <div className="flex items-center justify-between">
           <CardTitle className="text-zinc-50">Token Collateral</CardTitle>
-          <Badge className="bg-cosmic-cyan/20 text-cosmic-cyan border-cosmic-cyan/30">
-            Solana Assets
+          <Badge variant="default" className="bg-cosmic-cyan/20 text-cosmic-cyan border-cosmic-cyan/30">
+            <span>Solana Assets</span>
           </Badge>
         </div>
         <CardDescription className="text-zinc-400">
@@ -261,3 +262,4 @@ const CollateralLock = ({ isWalletConnected }: CollateralLockProps) => {
 };
 
 export default CollateralLock;
+
