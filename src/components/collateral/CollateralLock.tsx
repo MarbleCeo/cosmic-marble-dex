@@ -1,4 +1,5 @@
 
+// Added React imports and fixed Badge typings and imports
 import * as React from "react";
 import { useState } from "react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -262,4 +263,3 @@ const CollateralLock = ({ isWalletConnected }: CollateralLockProps) => {
 };
 
 export default CollateralLock;
-

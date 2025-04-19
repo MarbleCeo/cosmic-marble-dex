@@ -24,11 +24,12 @@ const badgeVariants = cva(
   }
 );
 
-// Ensure children is included and props types include className, variant, etc.
 export interface BadgeProps
   extends React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof badgeVariants> {
   children?: React.ReactNode;
+  className?: string;    // Added className in interface to fix errors
+  variant?: "default" | "secondary" | "destructive" | "outline"; // Added variant explicitly to match badgeVariants
 }
 
 function Badge({ className, variant, children, ...props }: BadgeProps) {

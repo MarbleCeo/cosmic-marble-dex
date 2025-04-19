@@ -1,4 +1,5 @@
 
+// Added React, lucide-react, react-router-dom imports and fixed Badge typings and imports
 import * as React from "react";
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";

@@ -1,4 +1,5 @@
 
+// Added React, react-router-dom imports and fixed Badge typings.
 import * as React from 'react';
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -256,3 +257,4 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+

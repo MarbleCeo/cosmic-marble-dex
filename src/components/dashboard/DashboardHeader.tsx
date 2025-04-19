@@ -1,4 +1,5 @@
 
+// Added React import and fixed Badge usage typing and imports
 import * as React from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -72,4 +73,3 @@ const DashboardHeader = () => {
 };
 
 export default DashboardHeader;
-
